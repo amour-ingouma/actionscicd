@@ -15,27 +15,27 @@ env:
   SKU: "S1 Standard"
 
 jobs:
-    build:
-    name: Build and Publish
+  build:
+    name: Build and Publis
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@2
+    - uses: actions/checkout@v2
 
-    - name: Use Node ${{ env.NODE_VERSION}}
+    - name: Use Node ${{ env.NODE_VERSION }}
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ env.NODE_VERSION}}
+        node-version: ${{ env.NODE_VERSION }}
 
-    - name: Build Project
+    - name: Build project
       continue-on-error: false
       run: |
-         npm install
-         npm run build
+        npm install
+        npm run build
 
-    - name: Create Artifacts Dirs
-      run: |
-         mkdir buildartifacts
-         mkdir deploymenttemplates
+    - name: Create Artifact Dirs
+      run: | 
+        mkdir buildartifacts
+        mkdir deploymenttemplates
 
     - name: Archive app
       run: |
@@ -43,7 +43,7 @@ jobs:
 
     - name: Upload Build Artifact
       continue-on-error: false
-      uses: actions/upload-artifact@2
+      uses: actions/upload-artifact@v2
       with:
         name: buildartifacts
         path: buildartifacts
